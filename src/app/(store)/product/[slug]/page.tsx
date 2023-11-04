@@ -1,23 +1,14 @@
 import Image from 'next/image'
+import { Metadata } from 'next'
 
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
-import { Metadata } from 'next'
 import { AddToCartButton } from '@/components/add-to-cart-button'
 
 interface ProductProps {
   params: {
     slug: string
   }
-}
-
-export async function generateStaticParams() {
-  const response = await api('/products/featured')
-  const products: Product[] = await response.json()
-
-  return products.map((product) => {
-    return { slug: product.slug }
-  })
 }
 
 async function getProduct(slug: string): Promise<Product> {
@@ -40,6 +31,15 @@ export async function generateMetadata({
   return {
     title: product.title,
   }
+}
+
+export async function generateStaticParams() {
+  const response = await api('/products/featured')
+  const products: Product[] = await response.json()
+
+  return products.map((product) => {
+    return { slug: product.slug }
+  })
 }
 
 export default async function ProductPage({ params }: ProductProps) {
@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: ProductProps) {
             })}
           </span>
           <span className="text-sm text-zinc-400">
-            Em 12x s/ juros de{' '}
+            Em até 12x s/ juros de{' '}
             {(product.price / 12).toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',

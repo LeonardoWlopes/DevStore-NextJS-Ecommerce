@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 
-// components
 import { Header } from '@/components/header'
 import { CartProvider } from '@/contexts/cart-context'
 

@@ -34,7 +34,8 @@ export default async function Home() {
           className="group-hover:scale-105 transition-transform duration-500"
           width={920}
           height={920}
-          alt={highlightedProduct.title}
+          quality={100}
+          alt=""
         />
 
         <div className="absolute bottom-28 right-28 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
